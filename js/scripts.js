@@ -18,6 +18,36 @@ if (localStorage.getItem('usersData')) {
    usersData = JSON.parse(localStorage.getItem('usersData'));
 }
 
+function callBack(message) {           // Alert function
+   userName.classList.add('hide');
+   signUpButton.classList.add('hide');
+   signUp.classList.add('hide');
+   loginButton.classList.add('hide');
+   email.classList.add('hide');
+   password.classList.add('hide');
+   formTitle.innerHTML = message;
+   formTitle.style.cssText = `
+   font-size: 26px;
+   font-weight: 300;
+   margin-bottom: 0px;
+   letter-spacing: 3px;
+   `
+}
+
+function checkEmailAndLogin() {      // Checking email and login function
+   let check = false;
+   usersData.forEach(function (element) {
+      if (
+         email.value == element.Email ||
+         userName.value == element.NameSurname
+      ) {
+         check = true;
+         return;
+      }
+   })
+   return check;
+}
+
 
 //=====================SignUp===========================//
 
@@ -117,34 +147,3 @@ tryAgain.addEventListener("click", function () {
    margin-bottom: 40px;
    `
 })
-
-function callBack(message) {
-   userName.classList.add('hide');
-   signUpButton.classList.add('hide');
-   signUp.classList.add('hide');
-   loginButton.classList.add('hide');
-   email.classList.add('hide');
-   password.classList.add('hide');
-   formTitle.innerHTML = message;
-   formTitle.style.cssText = `
-   font-size: 26px;
-   font-weight: 300;
-   margin-bottom: 0px;
-   letter-spacing: 3px;
-   `
-}
-
-
-function checkEmailAndLogin() {
-   let check = false;
-   usersData.forEach(function (element) {
-      if (
-         email.value == element.Email ||
-         userName.value == element.NameSurname
-      ) {
-         check = true;
-         return;
-      }
-   })
-   return check;
-}
