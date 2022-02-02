@@ -26,12 +26,8 @@ function callBack(message) {           // Alert function
    email.classList.add('hide');
    password.classList.add('hide');
    formTitle.innerHTML = message;
-   formTitle.style.cssText = `
-   font-size: 26px;
-   font-weight: 300;
-   margin-bottom: 0px;
-   letter-spacing: 3px;
-   `
+   formTitle.classList.remove('title');
+   formTitle.classList.add('call__back');
 }
 
 function checkEmailAndLogin() {      // Checking email and login function
@@ -51,7 +47,8 @@ function checkEmailAndLogin() {      // Checking email and login function
 
 //=====================SignUp===========================//
 
-signUp.addEventListener("click", function () {    // Don't have acc? => Go to Sign in Form
+signUp.addEventListener("click", function (event) {  // Don't have acc? =>
+   event.preventDefault();                         //Go to  Sign in Form
    signUp.classList.add('hide');
    loginButton.classList.add('hide');
    userName.classList.remove('hide');
@@ -63,7 +60,8 @@ signUp.addEventListener("click", function () {    // Don't have acc? => Go to Si
 //=====================SignUpButton===========================//
 
 
-signUpButton.addEventListener("click", function () {
+signUpButton.addEventListener("click", function (event) {
+   event.preventDefault();
    let newUser = {
       NameSurname: userName.value,
       Email: email.value,
@@ -77,7 +75,7 @@ signUpButton.addEventListener("click", function () {
    ) {
       return;
    } else if (checkEmailAndLogin() === true) {  // If username or password is already used
-      callBack('This username or password is already used');
+      callBack('This username or email is already used');
       tryAgain.classList.remove('hide');
    } else {
       console.log(checkEmailAndLogin())       // Push to arr and save in localStorage   
@@ -95,15 +93,12 @@ signUpButton.addEventListener("click", function () {
 //=====================LoginButton===========================//
 
 loginButton.addEventListener("click", function (event) {
-
    event.preventDefault();
-
    if (usersData.length === 0) {
       console.log(usersData.length)
       callBack('Invalid Email or Password');
       tryAgain.classList.remove('hide');
    }
-
    if (                              // If user don't put text in some area
       email.value == '' ||
       password.value == '' ||
@@ -111,10 +106,9 @@ loginButton.addEventListener("click", function (event) {
    ) {
       return;
    }
-
    let find = false;
-   usersData.forEach(function (element) {    // Search this email and password ind arr
-      if (
+   usersData.forEach(function (element) {  // Search this email  
+      if (                                 //  and password in arr                
          email.value == element.Email &
          password.value == element.Password
       ) {
@@ -131,7 +125,8 @@ loginButton.addEventListener("click", function (event) {
 //=====================TryAgain===========================//
 
 
-tryAgain.addEventListener("click", function () {
+tryAgain.addEventListener("click", function (event) {
+   event.preventDefault();
    signUp.classList.remove('hide');
    loginButton.classList.remove('hide');
    userName.classList.add('hide');
@@ -140,10 +135,6 @@ tryAgain.addEventListener("click", function () {
    tryAgain.classList.add('hide');
    email.classList.remove('hide');
    password.classList.remove('hide');
-   formTitle.style.cssText = `
-   font-size: 24px;
-   font-weight: 600;
-   letter-spacing: 1px;
-   margin-bottom: 40px;
-   `
+   formTitle.classList.remove('call__back');
+   formTitle.classList.add('title');
 })

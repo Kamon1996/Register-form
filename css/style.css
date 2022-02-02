@@ -138,6 +138,9 @@ section .color:nth-child(3) {
 .form h2 {
    position: relative;
    color: #fff;
+}
+
+.form .title {
    font-size: 24px;
    font-weight: 600;
    letter-spacing: 1px;
@@ -205,4 +208,11 @@ section .color:nth-child(3) {
 
 .hide {
    display: none;
+}
+
+.call__back {
+   font-size: 26px;
+   font-weight: 300;
+   margin-bottom: 0px;
+   letter-spacing: 3px;
 }
